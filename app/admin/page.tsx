@@ -1,4 +1,4 @@
-import { createServerClient } from '@/lib/supabase'
+import { createServerClient } from '@/lib/supabase/server'
 import { formatCurrency } from '@/lib/utils'
 import Link from 'next/link'
 
@@ -11,7 +11,7 @@ export default async function AdminPage() {
     { data: poolView },
     { data: charityTotal },
     { data: recentActivity },
-    { data: pendingWinners },
+    { count: pendingCount },
   ] = await Promise.all([
     supabase.from('subscriptions').select('*', { count: 'exact', head: true }).eq('status', 'active'),
     supabase.from('profiles').select('*', { count: 'exact', head: true }),
@@ -47,11 +47,11 @@ export default async function AdminPage() {
       </div>
 
       {/* Alerts */}
-      {(pendingWinners?.count ?? 0) > 0 && (
+      {(pendingCount ?? 0) > 0 && (
         <Link href="/admin/winners" className="flex items-center justify-between bg-amber-50 border border-amber-100 rounded-xl p-4 mb-6 hover:border-amber-200 transition-colors">
           <div>
             <p className="font-medium text-amber-900 text-sm">
-              {pendingWinners?.count} winner{pendingWinners?.count !== 1 ? 's' : ''} awaiting verification
+              {(pendingCount ?? 0)} winner{(pendingCount ?? 0) !== 1 ? 's' : ''} awaiting verification
             </p>
             <p className="text-xs text-amber-600 mt-0.5">Review and approve proof submissions</p>
           </div>
