@@ -34,7 +34,7 @@ export function algorithmicDraw(allScores: Score[]): number[] {
 
   // Build weighted pool
   const weightedPool: number[] = []
-  for (const [num, weight] of freq.entries()) {
+  for (const [num, weight] of Array.from(freq.entries())) {
     for (let i = 0; i < weight; i++) {
       weightedPool.push(num)
     }
