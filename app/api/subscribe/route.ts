@@ -50,7 +50,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Invalid plan' }, { status: 400 })
     }
 
-    const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000'
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://par-give.vercel.app'
 
    
     const checkoutSession = await stripe.checkout.sessions.create({
