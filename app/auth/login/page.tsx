@@ -76,12 +76,16 @@ export default function LoginPage() {
 
         <p className="text-center text-sm text-stone-400 mt-5">
           Don&apos;t have an account?{' '}
+          <div>
           <Link href="/signup" className="text-brand-500 font-medium hover:underline">
-            Don't Register yet
+            Resgiter Here
           </Link>
+          </div>
+          <div>
           <Link href="/subscribe" className="text-brand-500 font-medium hover:underline">
             Subscribe to join
           </Link>
+          </div>
         </p>
       </div>
     </div>
